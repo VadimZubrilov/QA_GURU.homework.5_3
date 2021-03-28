@@ -10,12 +10,12 @@ def selenideVersion = "5.19.0",
     junitVersion = "5.7.1"
 
 dependencies {
-    testImplementation (
+    testImplementation(
             "com.codeborne:selenide:$selenideVersion",
-            "org.junit.jupiter:junit-jupiter-api:$junitVersion")
+            "org.junit.jupiter:junit-jupiter-api:$junitVersion",
+            "org.slf4j:slf4j-simple:1.7.29")
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
 }
-
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
