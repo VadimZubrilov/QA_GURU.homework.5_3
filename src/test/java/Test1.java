@@ -4,6 +4,11 @@ import com.codeborne.selenide.Selenide;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import static com.codeborne.selenide.Selectors.byLinkText;
+import static com.codeborne.selenide.Selectors.byText;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.sleep;
+
 public class Test1 {
 
     @BeforeAll
@@ -15,9 +20,16 @@ public class Test1 {
     @Test
     void shouldFindSelenideGitHub(){
         Selenide.open("https://github.com/");
-        Selenide.$("[name=q]").setValue("selenide").pressEnter();
+        $("[name=q]").setValue("selenide").pressEnter();
         Selenide.$$("ul.repo-list li").get(0).$("a").click();
-        Selenide.$("h1").shouldHave(Condition.text("selenide / selenide"));
-        Selenide.sleep(5000);
+        $("h1").shouldHave(Condition.text("selenide / selenide"));
+        $("[data-tab-item=i4wiki-tab]").click();
+        $("#wiki-body").shouldHave(Condition.text("Soft assertions"));
+        $(byText("Soft assertions")).click();
+        //$("#wiki-body").$("/selenide/selenide/wiki/SoftAssertions").click();
+        //$(".d-flex:nth-child(5) > .js-selected-navigation-item > span:nth-child(2)").click();
+
+        sleep(5000);
+
     }
 }
